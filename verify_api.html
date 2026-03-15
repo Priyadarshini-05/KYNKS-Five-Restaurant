@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>API Diagnostic</title></head>
+<body>
+  <h1>API Diagnostic</h1>
+  <button onclick="test('/api/admin/dish-sales')">Test Dish Sales</button>
+  <button onclick="test('/api/admin/monthly-sales-report?year=2026&month=3')">Test Reports</button>
+  <pre id="output"></pre>
+  <script>
+    async function test(path) {
+      const out = document.getElementById('output');
+      out.innerText = 'Testing ' + path + '...';
+      try {
+        const res = await fetch('http://localhost:5000' + path);
+        out.innerText += '\nStatus: ' + res.status + ' (' + res.statusText + ')';
+        const data = await res.json().catch(e => ({error: 'No JSON response'}));
+        out.innerText += '\nResponse: ' + JSON.stringify(data, null, 2);
+      } catch (e) {
+        out.innerText += '\nError: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
