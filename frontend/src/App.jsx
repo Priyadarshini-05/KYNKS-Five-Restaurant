@@ -34,7 +34,7 @@ import MonthlySalesReport from "./pages/admin/MonthlySalesReport";
 import AdminProfile from "./pages/admin/AdminProfile";
 
 
-export const Server = import.meta.env.VITE_BACKEND_URL || "http://localhost:5002"; // Uses live backend if defined, otherwise localhost
+export const Server = import.meta.env.VITE_BACKEND_URL || "https://kynks-five-restaurant.onrender.com"; // Uses live backend if defined, otherwise the explicitly provided Render URL
 
 const App = () => {
   const adminPath = useLocation().pathname.includes("admin");

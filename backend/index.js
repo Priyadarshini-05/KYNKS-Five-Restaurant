@@ -24,9 +24,17 @@ app.use(express.json());
 app.use(
   cors({
     origin: (origin, callback) => {
-      // In production, you might want to restrict this to only your Vercel URL.
-      // For now, allow any origin so the frontend can connect without issues.
-      callback(null, true);
+      const allowedOrigins = [
+        "https://kynks-five-restaurant.vercel.app", // Your specific Vercel URL
+        "http://localhost:5173", 
+        "http://localhost:5174"
+      ];
+      // Allow specific origins, or development tools (like Postman where origin is usually undefined)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
     },
     credentials: true,
   })
