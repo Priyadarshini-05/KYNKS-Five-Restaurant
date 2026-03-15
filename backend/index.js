@@ -24,18 +24,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = [
-        "https://resturant-app-peach.vercel.app",
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:5175",
-        "http://localhost:5176",
-      ];
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
+      // In production, you might want to restrict this to only your Vercel URL.
+      // For now, allow any origin so the frontend can connect without issues.
+      callback(null, true);
     },
     credentials: true,
   })

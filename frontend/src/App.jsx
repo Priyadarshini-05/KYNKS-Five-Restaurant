@@ -34,7 +34,7 @@ import MonthlySalesReport from "./pages/admin/MonthlySalesReport";
 import AdminProfile from "./pages/admin/AdminProfile";
 
 
-export const Server = "http://localhost:5002"; // Assuming backend runs on 5002 based on standard MERN stacks, this should probably be env based but this works for now.
+export const Server = import.meta.env.VITE_BACKEND_URL || "http://localhost:5002"; // Uses live backend if defined, otherwise localhost
 
 const App = () => {
   const adminPath = useLocation().pathname.includes("admin");
